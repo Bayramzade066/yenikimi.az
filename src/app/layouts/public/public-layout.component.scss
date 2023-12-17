@@ -1,0 +1,12 @@
+@import 'assets/styles/abstracts';
+
+.public{
+  margin-top: rem(120);
+  &__content{
+    margin-left: rem(230);
+    @include transition;
+    &.active{
+      margin-left: rem(0);
+    }
+  }
+}

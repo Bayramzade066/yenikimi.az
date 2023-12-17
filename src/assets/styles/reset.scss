@@ -1,0 +1,175 @@
+*{
+  margin:0;
+  padding: 0;
+  box-sizing: border-box;
+  line-height: unset;
+  -webkit-font-smoothing: subpixel-antialiased;
+  font-variant: unset !important;
+  font-feature-settings: normal !important;
+  border: 0;
+  border-radius: 0;
+}
+
+
+html,
+body,
+#root {
+  float: left;
+  width: 100%;
+  min-height: 100vh;
+}
+
+body {
+  font-variant: unset !important;
+  font-feature-settings: normal !important;
+}
+
+p, ul, h1, h2, h3, h4, h5, h6{
+  margin-bottom: 0;
+}
+
+h1, h2, h3, h4, h5, h6{
+  line-height: unset;
+}
+
+a{
+  display: inline-block;
+  text-decoration: none;
+}
+
+ol, ul{
+  list-style-type: none;
+
+  li{
+    float: left;
+    position: relative;
+
+    &:last-child{
+      margin-right: 0;
+    }
+  }
+
+
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+button{
+  cursor: pointer;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}
+
+/*custom class*/
+.center{
+  margin: 0 auto;
+  float: none;
+  position: relative;
+}
+
+.full{
+  position: relative;
+  float: left;
+  width: 100%;
+}
+
+.full_h{
+  height: 100%;
+}
+
+.pos_rel{
+  position: relative;
+}
+
+.pos_abs{
+  position: absolute;
+}
+
+.float_left{
+  float: left;
+}
+
+.float_right{
+  float: right;
+}
+
+.float_none{
+  float: none;
+}
+
+.clearfix{
+  clear: both;
+}
+
+.center{
+  position: relative;
+  margin: 0 auto;
+}
+
+.has_bg{
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: auto;
+}
+
+.flex{
+  display: flex;
+}
+
+.align_center{
+  align-items: center;
+}
+
+.align_end{
+  align-items: flex-end;
+}
+
+.justify_between{
+  justify-content: space-between;
+}
+
+.justify_center{
+  justify-content: center;
+}
+
+.justify_end{
+  justify-content: flex-end;
+}
+
+.direction_column{
+  flex-direction: column;
+}
+
+.flex_wrap{
+  flex-wrap: wrap;
+}
+
+.flex_1{
+  flex: 1;
+}
+
+.pointer{
+  cursor: pointer;
+}
+
+.no_bg_color{
+  background-color: unset !important;
+}
+
+.height_auto{
+  height: unset !important;
+}
+
+.ant-input{
+  border: 0;
+  box-shadow: unset;
+  border-radius: 0;
+  outline: none;
+}
