@@ -24,7 +24,7 @@ export default function InputCom({
           placeholder={placeholder}
           value={value}
           onChange={inputHandler}
-          className={`!h-[30px] input-field placeholder:text-sm text-sm px-6 text-dark-gray w-full h-full font-normal bg-white focus:ring-0 focus:outline-none ${
+          className={`!h-[40px] input-field placeholder:text-sm text-sm px-6 text-dark-gray w-full h-full font-normal bg-white focus:ring-0 focus:outline-none ${
             inputClasses || ""
           }`}
           type={type}

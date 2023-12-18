@@ -44,7 +44,7 @@ export default function Banner({ className }) {
                 </div>
               </div>
             </div> */}
-            <div
+            {/* <div
               data-aos="fade-up"
               className="best-services w-full bg-white flex flex-col space-y-10 lg:space-y-0 lg:flex-row lg:justify-between lg:items-center lg:h-[110px] px-10 lg:py-0 py-10"
             >
@@ -245,8 +245,8 @@ export default function Banner({ className }) {
                   </div>
                 </div>
               </div>
-            </div>
-            <div className=" bg-qgray w-full absolute z-999 left-0 mt-6  flex items-center  justify-center">
+            </div> */}
+            <div data-aos="fade-up" className=" bg-qgray w-full absolute z-999 left-0 mt-6  flex items-center  justify-center">
                         <a href="/" >
                             <img
                             className="flex  items-center justify-center my-4"

@@ -1,7 +1,10 @@
 import { useRef, useState } from "react";
+
+
+ 
 import { Button, Drawer, Form, Modal, Input, Spin } from 'antd';
 import { translateListData } from "store/actions/translate";
-import { connect } from "react-redux";
+import { connect, useDispatch } from "react-redux";
 import { useActions } from "hooks/useActions";
 
 import InputCom from "../../Helpers/InputCom";
@@ -28,6 +31,8 @@ const Login: React.FC<any> = () => {
   };
 
 
+ 
+
 
   const onFinish = async (values: any) => {
     setSuccess(true)
@@ -36,13 +41,42 @@ const Login: React.FC<any> = () => {
 
     user_form_data.append('email_or_phone', values.email_or_phone);
     user_form_data.append('password', values.password);
+
+
+
+
     const login_user = await login(user_form_data);
 
-    if (login_user.status == 'success') {
+    let d = JSON.stringify({
+      email: values.email_or_phone,
+      password: values.password,
+    });
+
+    const res = await fetch("http://192.168.31.88:7299/api/User/Login", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: d,
+      mode: 'cors',
+    });
+
+    const data = await res.text();
+  
+       
+ 
+
+
+
+
+
+    if (res.ok) {
      
       localStorage.setItem('auth_token', 'true');
-      localStorage.setItem('loggedUserData', JSON.stringify(login_user.user_data));
-       history.push('/')
+      // localStorage.setItem('loggedUserData', JSON.stringify(login_user.user_data));
+
+      localStorage.setItem("token", data);
+      history.push('/')
       onReset();
 
       // Modal.success({
@@ -81,8 +115,18 @@ const Login: React.FC<any> = () => {
     <Layout childrenClasses="pt-0 pb-0">
       <div className="login-page-wrapper w-full py-10">
         <div className="container-x mx-auto">
-          <div className="lg:flex items-center relative">
-            <div className="lg:w-[572px] w-full h-[783px] bg-white flex flex-col justify-center sm:p-10 p-5 border border-[#E0E0E0]">
+          <div className="lg:flex items-center relative">        
+            <div className="lg:w-[572px] w-full h-[700px] bg-white flex flex-col justify-center sm:p-10 p-5 border border-[#E0E0E0]">
+            <div className="absolute top-5 left-5">
+            <a href="/">
+              <img
+                className="w-[50px] lg:w-[75px] rounded-md"
+                
+                src={`assets/images/YK Logo2.jpg`}
+                alt="logo"
+              />
+            </a>
+          </div>
               <div className="w-full">
                 <div className="title-area flex flex-col justify-center items-center relative text-center mb-7">
                   <h1 className="text-[34px] font-bold leading-[74px] text-qblack">
@@ -115,7 +159,7 @@ const Login: React.FC<any> = () => {
                         form={form}
                         name={'email_or_phone'}
                         rules={{ required: true, message: 'Bu xana boş buraxıla bilməz' }}
-                        className={'border border-gray px-1 h-[30px] w-full'}
+                        className={'border border-gray px-1 h-[40px] w-full'}
                         type={'email'}
                         placeholder={'E-mail *'}
 
@@ -133,7 +177,7 @@ const Login: React.FC<any> = () => {
                         form={form}
                         name={'password'}
                         rules={{ required: true, message: 'Bu xana boş buraxıla bilməz' }}
-                        className={' h-full w-full flex '}
+                        className={' h-[40px] w-full flex '}
                         type={'password'}
                         placeholder={'Şifrə *'}
                       />
@@ -145,7 +189,7 @@ const Login: React.FC<any> = () => {
                           inputClasses="h-[50px]"
                           inputHandler={(e) => setPass(e.target.value)} children={undefined} value={undefined} /> */}
                     </div>
-                    <div className="forgot-password-area flex justify-between items-center mb-7">
+                    <div className="forgot-password-area flex justify-between items-center ">
                       <div className="remember-checkbox flex items-center space-x-2.5">
                         <button
                           onClick={rememberMe}
@@ -155,7 +199,7 @@ const Login: React.FC<any> = () => {
                           {checked && (
                             <svg
                               xmlns="http://www.w3.org/2000/svg"
-                              className="h-5 w-5"
+                              className="h-5 w-5 pt-2"
                               viewBox="0 0 20 20"
                               fill="currentColor"
                             >

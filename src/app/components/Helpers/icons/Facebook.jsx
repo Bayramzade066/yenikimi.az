@@ -1,8 +1,7 @@
-export default function Facebook({ className }) {
+export default function Facebook({ className,width }) {
   return (
     <svg
-      width="10"
-      height="16"
+    width= {width ? width : '20'}
       viewBox="0 0 10 16"
       fill="none"
       className={className}

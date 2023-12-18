@@ -3,6 +3,8 @@
 // import ThinBag from "../../../Helpers/icons/ThinBag";
 import ThinLove from "../../../Helpers/icons/ThinLove";
 import ThinPeople from "../../../Helpers/icons/ThinPeople";
+import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
+import PersonOutlineIcon from '@material-ui/icons/PersonOutline';
 import SearchBox from "../../../Helpers/SearchBox";
 import Selectbox from "../../../Helpers/Selectbox";
 import Arrow from "../../../Helpers/icons/Arrow";
@@ -49,7 +51,7 @@ export default function Middlebar({ className }) {
               <div className="favorite relative">
                 <a href="/wishlist">
                   <span>
-                    <ThinLove />
+                    <FavoriteBorderIcon className="hover:text-qyellow transition-all" />
                   </span>
                 </a>
                 <span className="w-[18px] h-[18px] rounded-full bg-qyellow absolute -top-2.5 -right-2.5 flex justify-center items-center text-[9px]">
@@ -72,18 +74,18 @@ export default function Middlebar({ className }) {
                 <Cart className="absolute -right-[45px] top-11 z-50 hidden group-hover:block" />
               </div> */}
               <div className="mt-2">
-                <button type="button">
+                <button type="button" className="group">
                
-                  <span className="flex items-center justify-center gap-1 hover:text-qyellow">
-                    <ThinPeople />
-                 {userData ? <a href="/profile"> <span className="font-bold text-sm hover:text-qyellow ">Profilim</span></a> : <a href="/login"><span className="font-bold text-sm hover:text-qyellow">Daxil ol</span> </a>}
+                  <span className="flex items-center justify-center gap-1 ">
+                    <PersonOutlineIcon className="group-hover:text-qyellow " />
+                 {userData ? <a href="/profile"> <span className="font-bold text-sm group-hover:text-qyellow ">Profilim</span></a> : <a href="/login"><span className="font-bold text-sm group-hover:text-qyellow ">Daxil ol</span> </a>}
                   </span>
                  
                 </button>
               </div>
               <div className="language-select flex space-x-1 items-center mt-1">
                   <Selectbox className="w-fit" datas={["az","en","ru"]} />
-                  <Arrow className="fill-current qblack" />
+                  
                 </div>
             </div>
           </div>

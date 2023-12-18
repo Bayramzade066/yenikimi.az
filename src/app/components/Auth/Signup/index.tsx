@@ -46,17 +46,68 @@ export default function Signup() {
     user_form_data.append('email_or_phone', values.email_or_phone);
     user_form_data.append('password', values.password);
 
+
+
+
+
     //@ts-ignore
     const login_user = await register(user_form_data);
 
 
-    if (login_user.status == 'success') {
+    let d = JSON.stringify({
+      email: values.email_or_phone
+  
+    });
+
+  
+       
+  
+    const resReg = await fetch("http://192.168.31.88:7299/api/User/ChechUserRegistered", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: d,
+      mode: 'cors',
+    });
+
+
+
+
+
+    if (resReg.ok) {
+     
+    
+
+   
      
       localStorage.setItem('auth_token', 'true');
       localStorage.setItem('loggedUserData', JSON.stringify(values.email_or_phone));
       localStorage.setItem('loggedUserDataPass', JSON.stringify(values.password));
-      
-      history.push('/verification')
+
+
+
+
+    
+    let d = JSON.stringify({
+      email: values.email_or_phone
+    });
+
+    const resVerf = await fetch("http://192.168.31.88:7299/api/User/SendRegisterMail", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: d,
+      mode: 'cors',
+    });
+
+
+
+      if(resVerf){
+
+        history.push('/verification')
+      }
 
       onReset();
 
@@ -72,43 +123,28 @@ export default function Signup() {
     }
     else {
       setSuccess(false)
-      setResponseError(login_user.message)
+      setResponseError(resReg.statusText)
 
-      // Modal.error({
-      //   content: login_user.status,
-      //   onOk : () => {
-      //     if(login_user.status=='userNotActivated'){
-      //       history.push('/verify_account/'+login_user.user_token)
-      //     }
-      //   }
-      // })
     }
 
   };
-
-
-
-  // const  form = ()=>{
-  //   axios.request(config)
-  //   .then((response) => {
-  //      console.log(response.data);
-  //     //  localStorage.setItem('auth_token', 'true');
-  //     //  localStorage.setItem('responseData', JSON.stringify(response.data));
-  //       history.push('/verification')
-
-  //   })
-  //   // .catch((error) => {
-  //   //   console.log(error.response.data);
-  //   // });
-
-  // }
 
   return (
     <Layout childrenClasses="pt-0 pb-0">
       <div className="login-page-wrapper w-full py-10">
         <div className="container-x mx-auto">
           <div className="lg:flex items-center relative">
-            <div className="lg:w-[572px] w-full lg:h-[783px] bg-white flex flex-col justify-center sm:p-10 p-5 border border-[#E0E0E0]">
+          <div className="lg:w-[572px] w-full h-[700px] bg-white flex flex-col justify-center sm:p-10 p-5 border border-[#E0E0E0]">
+            <div className="absolute top-5 left-5">
+            <a href="/">
+              <img
+                className="w-[50px] lg:w-[75px] rounded-md"
+                
+                src={`assets/images/YK Logo2.jpg`}
+                alt="logo"
+              />
+            </a>
+          </div>
               <div className="w-full">
                 <div className="title-area flex flex-col justify-center items-center relative text-center mb-7">
                   <h1 className="text-[34px] font-bold leading-[74px] text-qblack">
