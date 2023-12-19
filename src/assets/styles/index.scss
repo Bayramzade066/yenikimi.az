@@ -258,9 +258,6 @@ input[type='number'] {
 
 .ant-input-password input {
   width: 100%;
-
-  border: 1px solid rgba(128, 128, 128, 0.205);
-  border-right: 0;
   height: 40px;
   padding-left: 4px;
 }
@@ -273,14 +270,11 @@ input:focus-visible {
 }
 
 .ant-input-suffix {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color: #e8f0fe;
-  height: 40px !important;
-  padding-right: 3px;
-  border: 1px solid rgba(128, 128, 128, 0.205);
-  border-left: 0;
+  position: absolute;
+  right: 5px;
+  top: 6px;
+  background-color: transparent;
+
 }
 a:hover {
   color: #ffbb38 !important;

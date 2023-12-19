@@ -58,7 +58,7 @@ const InputField = (props) => {
                             // iconRender={(visible) => (visible ? "" : "")}
                             placeholder={placeholder}
                             onChange={onChangeEvent}
-                            className={className}
+                            className={`${className}`}
                             form={form}
                         /> : type == 'tel' ? <MaskedInput
 

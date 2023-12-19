@@ -21,6 +21,7 @@ const Login: React.FC<any> = () => {
   const [success, setSuccess] = useState(false);
   const [userInfo, setUserInfo] = useState(false);
   const [checked, setValue] = useState(false);
+  const [loginChoose, setLoginChoose] = useState(false);
   const { translateListData } = useActions();
   const history = useHistory();
   const [form] = Form.useForm();
@@ -39,35 +40,34 @@ const Login: React.FC<any> = () => {
     // @ts-ignore
     let user_form_data = new FormData<LoginRegisterData>();
 
-    user_form_data.append('email_or_phone', values.email_or_phone);
+    user_form_data.append('email', values.email);
+    user_form_data.append('email', values.phone);
     user_form_data.append('password', values.password);
-
-
-
-
     const login_user = await login(user_form_data);
 
-    let d = JSON.stringify({
-      email: values.email_or_phone,
-      password: values.password,
-    });
+    let mail = JSON.stringify({
+      email: values.email,
+      password: values.password
+
+    })
+    let phone = JSON.stringify({
+      phone: values.phone,
+      password: values.password
+
+    })
 
     const res = await fetch("http://192.168.31.88:7299/api/User/Login", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
-      body: d,
+      body:  loginChoose ? mail : phone,
       mode: 'cors',
     });
 
     const data = await res.text();
   
        
- 
-
-
-
 
 
     if (res.ok) {
@@ -154,40 +154,40 @@ const Login: React.FC<any> = () => {
                     onFinish={onFinish}
                   // ref={formRef}
                   >
-                    <div className="input-item mb-5">
-                      <InputField
+                    <div className="input-item">
+                    {!loginChoose ? <InputField
                         form={form}
-                        name={'email_or_phone'}
+                        name={'email'}
                         rules={{ required: true, message: 'Bu xana boş buraxıla bilməz' }}
                         className={'border border-gray px-1 h-[40px] w-full'}
                         type={'email'}
                         placeholder={'E-mail *'}
-
                       />
-                      {/*<InputCom
-                          placeholder="Nihad@gmail.com"
-                          label="E-mail *"
-                          name="email"
-                          type="email"
-                          inputClasses="h-[50px]"
-                          inputHandler={(e) => setMail(e.target.value)} children={undefined} value={undefined}/> */}
+                      :
+                      <InputField
+                        form={form}
+                        name={'phone'}
+                        rules={{ required: false, message: 'Bu xana boş buraxıla bilməz' }}
+                        className={'border border-gray px-1 h-[40px] w-full sm:min-w-[230px]'}
+                        type={'tel'}
+                        placeholder={'Telefon Nömrə'}
+
+                      />}
                     </div>
-                    <div className="input-item mb-5 ">
+                    {!loginChoose ? 
+                    <span className="cursor-pointer font-semibold text-base text-qyellow hover:text-qblack" onClick={()=> setLoginChoose(!loginChoose)}>Nömrə ilə daxil ol</span>
+                  :
+                  <span className="cursor-pointer font-semibold text-base text-qyellow hover:text-qblack" onClick={()=> setLoginChoose(!loginChoose)}>Mail ilə daxil ol</span>
+                  }
+                    <div className="input-item mb-5 mt-5">
                       <InputField
                         form={form}
                         name={'password'}
                         rules={{ required: true, message: 'Bu xana boş buraxıla bilməz' }}
-                        className={' h-[40px] w-full flex '}
+                        className={' h-[40px] border border-solid w-full flex relative'}
                         type={'password'}
                         placeholder={'Şifrə *'}
                       />
-                      {/*<InputCom
-                          placeholder="● ● ● ● ● ●"
-                          label="Şifrə*"
-                          name="password"
-                          type="password"
-                          inputClasses="h-[50px]"
-                          inputHandler={(e) => setPass(e.target.value)} children={undefined} value={undefined} /> */}
                     </div>
                     <div className="forgot-password-area flex justify-between items-center ">
                       <div className="remember-checkbox flex items-center space-x-2.5">
