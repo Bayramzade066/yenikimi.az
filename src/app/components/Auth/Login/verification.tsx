@@ -200,7 +200,7 @@ export default function Verification() {
                         }
                         type={'number'}
                         maxs={true}
-                        placeholder={'6 Rəqəmli kodu daxil edin *'}
+                        placeholder={'4 Rəqəmli kodu daxil edin *'}
                       />
                     </div>
                     <div className="signin-area mb-3 text-center">

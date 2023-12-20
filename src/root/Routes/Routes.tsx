@@ -78,7 +78,7 @@ const routes = [
   {
     component: SingleProductPage,
     exact: true,
-    path: '/single-product',
+    path: '/single-product/:userId',
   },
 //   {
 //     component: ProductsCompaire,

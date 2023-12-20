@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
-import datas from "../../data/products.json";
+// import datas from "../../data/products.json";
+import datas from "../../data/items.json";
 import SectionStyleFour from "../Helpers/SectionStyleFour";
 import SectionStyleOne from "../Helpers/SectionStyleOne";
 import SectionStyleThree from "../Helpers/SectionStyleThree";
@@ -20,10 +21,12 @@ export default function Home() {
   const pathname=location.pathname;
   
   const { products } = datas;
+
   const brands = [];
   products.forEach((product) => {
-    brands.push(product.brand);
+    brands.push(product.selectedBrand);
   });
+
   const [ads, setAds] = useState(false);
   const adsHandle = () => {
     setAds(false);
@@ -68,14 +71,17 @@ export default function Home() {
         >
           <BestSellers />
         </ViewMoreTitle>
+
         <ProductsAds
           ads={[
             `assets/images/ads-2.png`,
            
           ]}
           sectionHeight="sm:h-[150px] h-full"
-          className="products-ads-section mb-[60px]"
+          className="products-ads-section "
         />
+
+
         {/* <SectionStyleOne
           categoryBackground={`${process.env.PUBLIC_URL}/assets/images/section-category-2.jpg`}
           products={products.slice(4, products.length)}

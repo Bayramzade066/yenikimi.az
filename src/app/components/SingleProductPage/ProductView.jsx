@@ -2,7 +2,7 @@ import { useState } from "react";
 import Star from "../Helpers/icons/Star";
 import Selectbox from "../Helpers/Selectbox";
 
-export default function ProductView({ className, reportHandler }) {
+export default function ProductView({ className, reportHandler,itemInfo }) {
   const productsImg = [
     {
       id: 1,
@@ -31,7 +31,7 @@ export default function ProductView({ className, reportHandler }) {
     },
   ];
 
-  const [src, setSrc] = useState(productsImg[0].src);
+  const [src, setSrc] = useState(itemInfo.selectedImages[0]);
   const changeImgHandler = (current) => {
     setSrc(current);
   };
@@ -59,24 +59,24 @@ export default function ProductView({ className, reportHandler }) {
               alt=""
               className="object-contain"
             />
-            <div className="w-[80px] h-[80px] rounded-full bg-qyellow text-qblack flex justify-center items-center text-xl font-medium absolute left-[30px] top-[30px]">
+            {/* <div className="w-[80px] h-[80px] rounded-full bg-qyellow text-qblack flex justify-center items-center text-xl font-medium absolute left-[30px] top-[30px]">
               <span>-50%</span>
-            </div>
+            </div> */}
           </div>
           <div className="flex gap-2 flex-wrap">
-            {productsImg &&
-              productsImg.length > 0 &&
-              productsImg.map((img) => (
+            {itemInfo.selectedImages &&
+              itemInfo.selectedImages.length > 0 &&
+              itemInfo.selectedImages.map((img) => (
                 <div
-                  onClick={() => changeImgHandler(img.src)}
-                  key={img.id}
+                key={img}
+                  onClick={() => changeImgHandler(img)}
                   className="w-[110px] h-[110px] p-[15px] border border-qgray-border cursor-pointer"
                 >
                   <img
-                    src={`${process.env.PUBLIC_URL}/assets/images/${img.src}`}
+                    src={`assets/images/${img}`}
                     alt=""
                     className={`w-full h-full object-contain ${
-                      src !== img.src ? "opacity-50" : ""
+                      src !== img ? "opacity-50" : ""
                     } `}
                   />
                 </div>
@@ -90,16 +90,16 @@ export default function ProductView({ className, reportHandler }) {
             data-aos="fade-up"
             className="text-qgray text-xs font-normal uppercase tracking-wider mb-2 inline-block"
           >
-            Mobile Phones
+            {itemInfo.selectedBrand}
           </span>
           <p
             data-aos="fade-up"
             className="text-xl font-medium text-qblack mb-4"
           >
-            Samsung Galaxy Z Fold3 5G 3 colors in 512GB
+            {itemInfo.selectedItemName}
           </p>
 
-          <div
+          {/* <div
             data-aos="fade-up"
             className="flex space-x-[10px] items-center mb-6"
           >
@@ -113,26 +113,27 @@ export default function ProductView({ className, reportHandler }) {
             <span className="text-[13px] font-normal text-qblack">
               6 Reviews
             </span>
-          </div>
+          </div> */}
 
           <div data-aos="fade-up" className="flex space-x-2 items-center mb-7">
-            <span className="text-sm font-500 text-qgray line-through mt-2">
+            {/* {<span className="text-sm font-500 text-qgray line-through mt-2">
               $9.99
-            </span>
-            <span className="text-2xl font-500 text-qred">$6.99</span>
+            </span>} */}
+            <span className="offer-price text-qblack font-bold text-2xl ml-2">
+         &#8380;{itemInfo.selectedItemPrice}
+          </span>
           </div>
 
           <p
             data-aos="fade-up"
             className="text-qgray text-sm text-normal mb-[30px] leading-7"
           >
-            It is a long established fact that a reader will be distracted by
-            the readable there content of a page when looking at its layout.
+            {itemInfo.selectedItemInfo}
           </p>
 
           <div data-aos="fade-up" className="colors mb-[30px]">
             <span className="text-sm font-normal uppercase text-qgray mb-[14px] inline-block">
-              COLOR
+              Rənglər
             </span>
 
             <div className="flex space-x-4 items-center">
@@ -158,14 +159,13 @@ export default function ProductView({ className, reportHandler }) {
             </div>
           </div>
 
-          <div data-aos="fade-up" className="product-size mb-[30px]">
+          {/* <div data-aos="fade-up" className="product-size mb-[30px]">
             <span className="text-sm font-normal uppercase text-qgray mb-[14px] inline-block">
-              SIZE
+              Ölçülər
             </span>
             <div className="w-full">
-              <div className=" border border-qgray-border h-[50px] flex justify-between items-center px-6 cursor-pointer">
+              <div className="w-full border border-qgray-border h-[50px] flex justify-between items-center px-6 cursor-pointer">
                 <Selectbox
-                  className="w-full"
                   datas={["Small", "Medium", "Large", "Extra Large"]}
                 >
                   {({ item }) => (
@@ -173,7 +173,7 @@ export default function ProductView({ className, reportHandler }) {
                       <div>
                         <span className="text-[13px] text-qblack">{item}</span>
                       </div>
-                      <div className="flex space-x-10 items-center">
+                      <div className="w-full flex space-x-10 items-center">
                         <span className="text-[13px] text-qblack">
                           3”W x 3”D x 7”H
                         </span>
@@ -197,13 +197,13 @@ export default function ProductView({ className, reportHandler }) {
                 </Selectbox>
               </div>
             </div>
-          </div>
+          </div> */}
 
           <div
             data-aos="fade-up"
             className="quantity-card-wrapper w-full flex items-center h-[50px] space-x-[10px] mb-[30px]"
           >
-            <div className="w-[120px] h-full px-[26px] flex items-center border border-qgray-border">
+            {/* <div className="w-[120px] h-full px-[26px] flex items-center border border-qgray-border">
               <div className="flex justify-between items-center w-full">
                 <button
                   onClick={decrement}
@@ -221,7 +221,7 @@ export default function ProductView({ className, reportHandler }) {
                   +
                 </button>
               </div>
-            </div>
+            </div> */}
             <div className="w-[60px] h-full flex justify-center items-center border border-qgray-border">
               <button type="button">
                 <span>
@@ -248,20 +248,20 @@ export default function ProductView({ className, reportHandler }) {
                 type="button"
                 className="black-btn text-sm font-semibold w-full h-full"
               >
-                Add To Cart
+                Ödəniş et
               </button>
             </div>
           </div>
 
-          <div data-aos="fade-up" className="mb-[20px]">
-            <p className="text-[13px] text-qgray leading-7">
-              <span className="text-qblack">Category :</span> Kitchen
+          <div  className="mb-[20px]">
+            <p className="text-xl text-qgray font-semibold leading-7">
+              <span className="text-qblack font-bold">Kateqoriya :</span> {itemInfo.selectedCategory}
             </p>
-            <p className="text-[13px] text-qgray leading-7">
-              <span className="text-qblack">Tags :</span> Beer, Foamer
+            <p className="text-xl text-qgray font-semibold leading-7">
+              <span className="text-qblack font-bold">Əlaqə nömrəsi :</span> {itemInfo.selectedOwnerDatas[1]}
             </p>
-            <p className="text-[13px] text-qgray leading-7">
-              <span className="text-qblack">SKU:</span> KE-91039
+            <p className="text-xl text-qgray font-semibold leading-7">
+              <span className="text-qblack font-bold">Mail :</span> {itemInfo.selectedOwnerDatas[0]}
             </p>
           </div>
 
@@ -289,7 +289,7 @@ export default function ProductView({ className, reportHandler }) {
               onClick={reportHandler}
               className="text-qred font-semibold text-[13px]"
             >
-              Report This Item
+              Bu məhsulu bildir
             </button>
           </div>
 
@@ -298,7 +298,7 @@ export default function ProductView({ className, reportHandler }) {
             className="social-share flex  items-center w-full"
           >
             <span className="text-qblack text-[13px] mr-[17px] inline-block">
-              Share This
+              Paylaş
             </span>
 
             <div className="flex space-x-5 items-center">

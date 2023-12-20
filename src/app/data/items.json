@@ -1,0 +1,108 @@
+{
+  "products": [
+    {
+      "id": "62aefe9ad8b80d5234af625a",
+      "selectedItemName": "ZARA hoodie",
+      "selectedItemInfo": "ZARA hoodie Turkiyeden getirilib istifade olunmayib L razmerdir.",
+      "selectedImages": ["apple-store.png","ayaqqabı.png"],
+      "selectedBrand": "zara",
+      "selectedCity": "Bakı",
+      "selectedCategory": "Geyim",
+      "selectedItemType": "Yeni",
+      "selectedItemPrice": 27.50,
+      "selectedOwnerDatas": ["bayramzade.313@gmail.com","+994705975727"],
+      "delivery": false
+    },
+    {
+      "id": "62aefe9a17780a9e549646c2",
+      "selectedItemName": "elit",
+      "selectedItemInfo": "elit hoodie Turkiyeden getirilib istifade olunmayib m razmerdir.",
+      "selectedImages": ["yenikimi.png","ayaqqabı.png","product-img-12.jpg"],
+      "selectedBrand": "nike",
+      "selectedCity": "Sumqayıt",
+      "selectedCategory": "Geyim",
+      "selectedItemType": "Yeni",
+      "selectedItemPrice": 27.50,
+      "selectedOwnerDatas": ["bayramzade.313@gmail.com","+994705975727"],
+      "delivery": false
+    },
+    {
+      "id": "62aefe9af9a0e865ee49c99e",
+      "selectedItemName": "ZARA hoodie",
+      "selectedItemInfo": "ZARA hoasdfasodie Turkiyeden getirilib istifade olunmayib L razmerdir.",
+      "selectedImages": ["apple-store.png","ayaqqabı.png"],
+      "selectedBrand": "zara23432",
+      "selectedCity": "Bakı23423",
+      "selectedCategory": "Gey4231im",
+      "selectedItemType": "2vc",
+      "selectedItemPrice": 27.50,
+      "selectedOwnerDatas": ["bayramzade.313@gmail.com","+994705975727"],
+      "delivery": false
+    },
+    {
+      "id": "62aefe9a6e662e77accd4cc4",
+      "selectedItemName": "elita",
+      "selectedItemInfo": "elit hoodie Turkiyeden getirilib istifade olunmayib m razmerdir.",
+      "selectedImages": ["ayaqqabı.png","product-img-12.jpg"],
+      "selectedBrand": "nike",
+      "selectedCity": "Sumqayıt",
+      "selectedCategory": "Geyim",
+      "selectedItemType": "icarə",
+      "selectedItemPrice": 27.50,
+      "selectedOwnerDatas": ["bayramzade.313@gmail.com","+994705975727"],
+      "delivery": false
+    },
+    {
+      "id": "62aefe9a9e1c4b69e47fa40f",
+      "selectedItemName": "ZARA hoodi",
+      "selectedItemInfo": "ZARA hoodie Turkiyeden getirilib istifade olunmayib L razmerdir.",
+      "selectedImages": ["apple-store.png","ayaqqabı.png"],
+      "selectedBrand": "zara",
+      "selectedCity": "Bakı",
+      "selectedCategory": "Geyim",
+      "selectedItemType": "2ci el",
+      "selectedItemPrice": 27.50,
+      "selectedOwnerDatas": ["bayramzade.313@gmail.com","+994705975727"],
+      "delivery": false
+    },
+    {
+      "id": "62aefe9aa96283a41a9b46fc",
+      "selectedItemName": "elit",
+      "selectedItemInfo": "elit hoodie Turkiyeden getirilib istifade olunmayib m razmerdir.",
+      "selectedImages": ["yenikimi.png","ayaqqabı.png","product-img-12.jpg","yenikimi.png","ayaqqabı.png","product-img-12.jpg"],
+      "selectedBrand": "nike",
+      "selectedCity": "Sumqayıt",
+      "selectedCategory": "Geyim",
+      "selectedItemType": "2vf",
+      "selectedItemPrice": 27.50,
+      "selectedOwnerDatas": ["bayramzade.313@gmail.com","+994705975727"],
+      "delivery": false
+    },
+    {
+      "id": "62aefe9aa2577bc8fa4ea7bc",
+      "selectedItemName": "ZARA hoodie",
+      "selectedItemInfo": "ZARA hoasdfasodie Turkiyeden getirilib istifade olunmayib L razmerdir.",
+      "selectedImages": ["apple-store.png","ayaqqabı.png"],
+      "selectedBrand": "zara23432",
+      "selectedCity": "Bakı23423",
+      "selectedCategory": "Gey4231im",
+      "selectedItemType": "YENİ",
+      "selectedItemPrice": 27.50,
+      "selectedOwnerDatas": ["bayramzade.313@gmail.com","+994705975727"],
+      "delivery": false
+    },
+    {
+      "id": "62aefe9aa117932437d0da93",
+      "selectedItemName": "elita",
+      "selectedItemInfo": "elit hoodie Turkiyeden getirilib istifade olunmayib m razmerdir.",
+      "selectedImages": ["ayaqqabı.png","product-img-12.jpg"],
+      "selectedBrand": "nike",
+      "selectedCity": "Sumqayıt",
+      "selectedCategory": "Geyim",
+      "selectedItemType": "icarə",
+      "selectedItemPrice": 27.50,
+      "selectedOwnerDatas": ["bayramzade.313@gmail.com","+994705975727"],
+      "delivery": false
+    }
+  ]
+}

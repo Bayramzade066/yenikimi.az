@@ -62,7 +62,7 @@ export default function Signup() {
           mode: 'cors',
         }
       )
-  
+
       if (resReg.ok) {
         localStorage.setItem('auth_token', 'true')
         localStorage.setItem(

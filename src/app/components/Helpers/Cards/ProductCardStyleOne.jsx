@@ -5,26 +5,28 @@ import ThinLove from "../icons/ThinLove";
 // import CallIcon from '@mui/icons-material/Call';
 
 export default function ProductCardStyleOne({ datas,favorite = false }) {
-  const available =
-    (datas.cam_product_sale /
-      (datas.cam_product_available + datas.cam_product_sale)) *
-    100;
+  // const available =
+  //   (datas.cam_product_sale /
+  //     (datas.cam_product_available + datas.cam_product_sale)) *
+  //   100;
+
   return (
+    <a href={`/single-product/${datas.id}`}>
     <div
-      className="product-card-one w-full h-full bg-white relative group overflow-hidden"
+      className="product-card-one w-full h-full bg-white relative group overflow-hidden rounded-md"
       style={{ boxShadow: "0px 15px 64px 0px rgba(0, 0, 0, 0.05)" }}
     >
       <div
         className="product-card-img w-full h-[300px]"
         style={{
-          background: `url(assets/images/${datas.image}) no-repeat center`,
+          background: `url(assets/images/${datas.selectedImages && datas.selectedImages[0]}) no-repeat center`,
         }}
       >
         {/* product available progress */}
-        {datas.campaingn_product && (
+        {/* {datas.campaingn_product && (
           <>
             <div className="px-[30px] absolute left-0 top-3 w-full">
-              <div className="progress-title flex justify-between ">
+               <div className="progress-title flex justify-between ">
                 <p className="text-xs text-qblack font-400 leading-6">
                   Prodcuts Available
                 </p>
@@ -39,28 +41,28 @@ export default function ProductCardStyleOne({ datas,favorite = false }) {
                   }}
                   className="h-full absolute left-0 top-0 bg-qyellow"
                 ></div>
-              </div>
+              </div> 
             </div>
           </>
-        )}
+        )} */}
         {/* product type */}
-        {datas.product_type && !datas.campaingn_product && (
+        {datas.selectedItemType &&  (
           <div className="product-type absolute right-[4px] top-[33px]">
-            <span
+           {datas.selectedItemType  === "Yeni" || datas.selectedItemType  === "icarə" ? <span
               className={`text-[12px] font-700 leading-none py-[6px] px-3 uppercase text-white rounded-full tracking-wider ${
-                // datas.product_type === "popular" ? "bg-[#19CC40]" : "bg-qyellow"
-                "bg-[#19CC40]"
+                datas.selectedItemType  === "Yeni" ? "bg-green-600"  : datas.selectedItemType  === "icarə" ? "bg-qyellow" : ""
+                
               }`}
             >
-              Yenİ
-              {/* {datas.product_type} */}
-            </span>
+              
+               {datas.selectedItemType} 
+            </span> : ''}
           </div>
         )}
       </div>
       <div className="product-card-details px-[30px] pb-[30px] relative">
         {/* add to card button */}
-        <div className="absolute w-full h-10 px-[30px] left-0 top-40 group-hover:top-[85px] transition-all duration-300 ease-in-out">
+        <div className="absolute w-full h-10 px-[30px] left-0 top-40 group-hover:top-[35px] transition-all duration-300 ease-in-out">
           <button type="button" className="yellow-btn">
             <div className="flex items-center space-x-3">
             <img
@@ -85,25 +87,24 @@ export default function ProductCardStyleOne({ datas,favorite = false }) {
             </div>
           </button>
         </div>
-        <div className="reviews flex space-x-[1px] mb-3">
+        {/* <div className="reviews flex space-x-[1px] mb-3">
           {Array.from(Array(datas.review), () => (
             <span key={datas.review + Math.random()}>
               <Star />
             </span>
           ))}
-        </div>
-        <a href="/single-product">
-          <p className="title mb-2 text-[15px] font-600 text-qblack leading-[24px] line-clamp-2 hover:text-blue-600">
-            {datas.title}
+        </div> */}   
+          <p className="title mb-2 text-[15px] font-600 text-qblack leading-[24px] line-clamp-2">
+            {datas.selectedItemName}
           </p>
-        </a>
         <p className="price">
-          <span className="main-price text-qgray line-through font-600 text-[18px]">
-            {datas.price}
+        <span className="offer-price text-qblack font-bold text-[18px] ml-2">
+         &#8380;{datas.selectedItemPrice}
           </span>
-          <span className="offer-price text-qred font-600 text-[18px] ml-2">
-            {datas.offer_price}
-          </span>
+          
+         {/* { datas.offer_price && <span className="main-price text-qgray line-through font-600 text-[18px]">
+          &#8380;{datas.selectedItemOfferPrice}
+          </span>}  */}
         </p>
       </div>
       {/* quick-access-btns */}
@@ -125,5 +126,6 @@ export default function ProductCardStyleOne({ datas,favorite = false }) {
         </a> */}
       </div>
     </div>
+    </a>
   );
 }

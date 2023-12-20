@@ -17,27 +17,22 @@ const forgetPassword = () => {
   const [responseError, setResponseError] = useState('')
   const [success, setSuccess] = useState(false)
   const [checked, setValue] = useState(false)
-  const [Mail, setMail] = useState('')
+  const [loginData, setLoginData] = useState('')
   const [verf, setVerf] = useState('')
+  const [loginChoose, setLoginChoose] = useState(false)
 
   const history = useHistory()
   const [form] = Form.useForm()
 
   const refreshCode = async () => {
-    let user_form_data = new FormData()
 
-    let registerMail = Mail
-
-    user_form_data.append('email_or_phone', registerMail)
-
-    // user_form_data.append('password', registerPass);
-
-    //@ts-ignore
-    const login_user = { status: 'success' }
     //setCounter(59)
 
-    let d = JSON.stringify({
-      email: Mail,
+    let mail = JSON.stringify({
+      email: loginData,
+    })
+    let phone = JSON.stringify({
+      phone: loginData,
     })
 
     const resReg = await fetch(
@@ -47,7 +42,7 @@ const forgetPassword = () => {
         headers: {
           'Content-Type': 'application/json',
         },
-        body: d,
+        body: loginChoose ? mail : phone,
         mode: 'cors',
       }
     )
@@ -82,20 +77,13 @@ const forgetPassword = () => {
   }
 
   const onFinish2 = async () => {
-    //@ts-ignore
-    let registerMail = Mail
-    //@ts-ignore
 
-    //@ts-ignore
-    let user_form_data = new FormData()
-    user_form_data.append('email_or_phone', registerMail)
-    // user_form_data.append('verify_code', values.verify_code);
-
-    //@ts-ignore
-    //  const login_user = await verifyUser(user_form_data);
-
-    let d = JSON.stringify({
-      email: Mail,
+    let mail = JSON.stringify({
+      email: loginData,
+      verfCode: verf,
+    })
+    let phone = JSON.stringify({
+      phone: loginData,
       verfCode: verf,
     })
 
@@ -106,7 +94,7 @@ const forgetPassword = () => {
         headers: {
           'Content-Type': 'application/json',
         },
-        body: d,
+        body: loginChoose ? mail : phone,
         mode: 'cors',
       }
     )
@@ -114,7 +102,7 @@ const forgetPassword = () => {
     if (res.ok) {
       console.log('Ugurlu sifre')
       localStorage.setItem('auth_token', 'true')
-      localStorage.setItem('loggedUserData', JSON.stringify(registerMail))
+      localStorage.setItem('loggedUserData', JSON.stringify(loginData))
 
       // setSuccess(false)
     } else {
@@ -127,19 +115,17 @@ const forgetPassword = () => {
   }
 
   const onFinish = async (values) => {
-    // setSuccess(true)
-    // @ts-ignore
-    let user_form_data = new FormData()
+     setSuccess(true)
 
-    // user_form_data.append('email_or_phone', values.email_or_phone);
-    // user_form_data.append('password', values.password);
-    const login_user = await login(user_form_data)
+      let mail = JSON.stringify({
+        email: loginData,
+        newPassword: values.password,
+      })
 
-    console.log(values.password)
-    let d = JSON.stringify({
-      email: Mail,
-      newPassword: values.password,
-    })
+      let phone = JSON.stringify({
+        phone: loginData,
+        newPassword: values.password,
+      })
 
     const resReset = await fetch(
       'http://192.168.31.88:7299/api/User/ResetPassword',
@@ -148,7 +134,7 @@ const forgetPassword = () => {
         headers: {
           'Content-Type': 'application/json',
         },
-        body: d,
+        body: loginChoose ? mail : phone,
         mode: 'cors',
       }
     )
@@ -247,7 +233,7 @@ const forgetPassword = () => {
                               }
                               type={'number'}
                               maxs={true}
-                              placeholder={'6 Rəqəmli kodu daxil edin *'}
+                              placeholder={'4 Rəqəmli kodu daxil edin *'}
                             />
                           </div>
                         ) : (
@@ -268,7 +254,58 @@ const forgetPassword = () => {
                       </>
                     ) : (
                       <div className="input-item mb-5">
-                        <input
+                        {!loginChoose ? (
+                          <InputField
+                            form={form}
+                            name={'email'}
+                            onChange={(e) => {
+                              setLoginData(e.target.value)
+                            }}
+                            rules={{
+                              required: true,
+                              message: 'Bu xana boş buraxıla bilməz',
+                            }}
+                            className={
+                              'border border-gray px-1 h-[40px] w-full'
+                            }
+                            type={'email'}
+                            placeholder={'E-mail *'}
+                          />
+                        ) : (
+                          <InputField
+                            form={form}
+                            name={'phone'}
+                            onChange={(e) => {
+                              setLoginData(e.target.value)
+                            }}
+                            rules={{
+                              required: false,
+                              message: 'Bu xana boş buraxıla bilməz',
+                            }}
+                            className={
+                              'border border-gray px-1 h-[40px] w-full sm:min-w-[230px]'
+                            }
+                            type={'tel'}
+                            placeholder={'Telefon Nömrə'}
+                          />
+                        )}
+
+                        {!loginChoose ? (
+                          <span
+                            className="cursor-pointer font-semibold text-base text-qyellow hover:text-qblack"
+                            onClick={() => setLoginChoose(!loginChoose)}
+                          >
+                            Nömrə ilə Şifrəni yenilə
+                          </span>
+                        ) : (
+                          <span
+                            className="cursor-pointer font-semibold text-base text-qyellow hover:text-qblack"
+                            onClick={() => setLoginChoose(!loginChoose)}
+                          >
+                            Mail ilə Şifrəni yenilə
+                          </span>
+                        )}
+                        {/* <input
                           form={form}
                           onChange={(e) => {
                             setMail(e.target.value)
@@ -283,7 +320,7 @@ const forgetPassword = () => {
                           placeholder={
                             'Qeydiyyatdan keçdiyiniz E-mail daxil edin *'
                           }
-                        />
+                        /> */}
                       </div>
                     )}
 

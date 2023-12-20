@@ -8,8 +8,23 @@ import Layout from "../Partials/Layout";
 import ProductView from "./ProductView";
 import Reviews from "./Reviews";
 import SallerInfo from "./SallerInfo";
+import { useParams } from "react-router-dom";
+import datas from "../../data/items.json";
 
 export default function SingleProductPage() {
+
+  let { userId } = useParams();
+  const { products } = datas;
+
+  let selected = [];
+  products.forEach((product) => {
+    if(userId === product.id){
+       selected.push(product) 
+    }
+   
+  });
+  const item = selected ? selected[0] : undefined;
+
   const [tab, setTab] = useState("des");
   const [rating, setRating] = useState(0);
   const [hover, setHover] = useState(0);
@@ -20,6 +35,7 @@ export default function SingleProductPage() {
   const [reviewLoading, setLoading] = useState(false);
   const reviewElement = useRef(null);
   const [report, setReport] = useState(false);
+  
   const [commnets, setComments] = useState([
     {
       id: Math.random(),
@@ -91,21 +107,21 @@ export default function SingleProductPage() {
               <div className="container-x mx-auto">
                 <BreadcrumbCom
                   paths={[
-                    { name: "home", path: "/" },
-                    { name: "single product", path: "/single-product" },
+                    { name: "Ana səhifə", path: "/" },
+                    { name: "Məhsul", path: "/single-product" },
                   ]}
                 />
               </div>
             </div>
             <div className="w-full bg-white pb-[60px]">
               <div className="container-x mx-auto">
-                <ProductView reportHandler={() => setReport(!report)} />
+                <ProductView reportHandler={() => setReport(!report)}  itemInfo={item} />
               </div>
             </div>
           </div>
 
           <div
-            className="product-des-wrapper w-full relative pb-[60px]"
+            className="product-des-wrapper w-full relative pb-[60px] hidden"
             ref={reviewElement}
           >
             <div className="tab-buttons w-full mb-10 mt-5 sm:mt-0">
@@ -235,16 +251,16 @@ export default function SingleProductPage() {
             <div className="container-x mx-auto">
               <div className="w-full py-[60px]">
                 <h1 className="sm:text-3xl text-xl font-600 text-qblacktext leading-none mb-[30px]">
-                  Related Product
+                  Oxşar məhsullar
                 </h1>
                 <div
                   data-aos="fade-up"
                   className="grid xl:grid-cols-4 lg:grid-cols-3 sm:grid-cols-2 grid-cols-1 xl:gap-[30px] gap-5"
                 >
                   <DataIteration
-                    datas={data.products}
-                    startLength={5}
-                    endLength={9}
+                    datas={products}
+                    startLength={1}
+                    endLength={5}
                   >
                     {({ datas }) => (
                       <div key={datas.id} className="item">
@@ -269,7 +285,7 @@ export default function SingleProductPage() {
               style={{ zIndex: "999" }}
             >
               <div className="title-bar flex items-center justify-between mb-3">
-                <h6 className="text-2xl font-medium">Report Products</h6>
+                <h6 className="text-2xl font-medium">Məhsulu bildir</h6>
                 <span
                   className="cursor-pointer"
                   onClick={() => setReport(!report)}
@@ -292,8 +308,8 @@ export default function SingleProductPage() {
               <div className="inputs w-full">
                 <div className="w-full mb-5">
                   <InputCom
-                    label="Enter Report Ttile*"
-                    placeholder="Reports Headline here"
+                    label="Şikayət başlıqını bildirin*"
+                    placeholder="Bura yazın"
                     type="email"
                     name="name"
                     inputClasses="h-[50px]"
@@ -301,8 +317,8 @@ export default function SingleProductPage() {
                   />
                 </div>
                 <div className="w-full mb-[40px]">
-                  <h6 className="input-label  capitalize text-[13px] font-600 leading-[24px] text-qblack block mb-2 ">
-                    Enter Report Note*
+                  <h6 className="input-label text-[13px] font-600 leading-[24px] text-qblack block mb-2 ">
+                    Şikayətinizi ətraflı izah edin*
                   </h6>
                   <textarea
                     name=""
@@ -310,12 +326,12 @@ export default function SingleProductPage() {
                     cols="30"
                     rows="6"
                     className="w-full focus:ring-0 focus:outline-none py-3 px-4 border border-qgray-border  placeholder:text-sm text-sm"
-                    placeholder="Type Here"
+                    placeholder="Bura yazın"
                   ></textarea>
                 </div>
 
                 <button type="button" className="w-full h-[50px] black-btn">
-                  Submit Report
+                  Şikayəti göndər
                 </button>
               </div>
             </div>

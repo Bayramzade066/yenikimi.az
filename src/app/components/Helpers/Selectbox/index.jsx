@@ -15,7 +15,7 @@ export default function Selectbox({ datas = [], className, action, children }) {
   return (
     <>
       {datas.length > 0 && (
-        <div  onClick={() => setToggle(!toggle)} className={`flex  my-select-box ${className || ""}`}>
+        <div  onClick={() => setToggle(!toggle)} className={`flex my-select-box ${className || ""}`}>
         
           <button
             type="button"

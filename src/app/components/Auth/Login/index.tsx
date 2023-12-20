@@ -36,12 +36,12 @@ const Login: React.FC<any> = () => {
 
 
   const onFinish = async (values: any) => {
-    setSuccess(true)
+   // setSuccess(true)
     // @ts-ignore
     let user_form_data = new FormData<LoginRegisterData>();
 
     user_form_data.append('email', values.email);
-    user_form_data.append('email', values.phone);
+    user_form_data.append('phone', values.phone);
     user_form_data.append('password', values.password);
     const login_user = await login(user_form_data);
 
@@ -55,54 +55,56 @@ const Login: React.FC<any> = () => {
       password: values.password
 
     })
+    console.log(phone)
 
-    const res = await fetch("http://192.168.31.88:7299/api/User/Login", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body:  loginChoose ? mail : phone,
-      mode: 'cors',
-    });
 
-    const data = await res.text();
+    // const res = await fetch("http://192.168.31.88:7299/api/User/Login", {
+    //   method: "POST",
+    //   headers: {
+    //     "Content-Type": "application/json",
+    //   },
+    //   body:  loginChoose ? mail : phone,
+    //   mode: 'cors',
+    // });
+
+    // const data = await res.text();
   
        
 
 
-    if (res.ok) {
+    // if (res.ok) {
      
-      localStorage.setItem('auth_token', 'true');
-      // localStorage.setItem('loggedUserData', JSON.stringify(login_user.user_data));
+    //   localStorage.setItem('auth_token', 'true');
+    //   // localStorage.setItem('loggedUserData', JSON.stringify(login_user.user_data));
 
-      localStorage.setItem("token", data);
-      history.push('/')
-      onReset();
+    //   localStorage.setItem("token", data);
+    //   history.push('/')
+    //   onReset();
 
-      // Modal.success({
-      //   content: 'Daxil olursunuz...',
-      //   onOk : () => {
-      //     //history.push('/profile')
+    //   // Modal.success({
+    //   //   content: 'Daxil olursunuz...',
+    //   //   onOk : () => {
+    //   //     //history.push('/profile')
 
-      //     window.location.href='/profile';
-      //   }
-      // });
+    //   //     window.location.href='/profile';
+    //   //   }
+    //   // });
 
-    }
-    else {
-      setResponseError(login_user.message)
-      setSuccess(false)
-      onReset();
+    // }
+    // else {
+    //   setResponseError(login_user.message)
+    //   setSuccess(false)
+    //   onReset();
 
-      // Modal.error({
-      //   content: login_user.status,
-      //   onOk : () => {
-      //     if(login_user.status=='userNotActivated'){
-      //       history.push('/verify_account/'+login_user.user_token)
-      //     }
-      //   }
-      // })
-    }
+    //   // Modal.error({
+    //   //   content: login_user.status,
+    //   //   onOk : () => {
+    //   //     if(login_user.status=='userNotActivated'){
+    //   //       history.push('/verify_account/'+login_user.user_token)
+    //   //     }
+    //   //   }
+    //   // })
+    // }
 
   };
 
